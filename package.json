@@ -1,0 +1,21 @@
+{
+  "name": "directus-extension-slug-generator",
+  "version": "1.0.0",
+  "description": "Slug generator interface for Directus CMS",
+  "keywords": [
+    "directus",
+    "directus-extension",
+    "directus-custom-interface",
+    "slug"
+  ],
+  "directus:extension": {
+    "type": "interface",
+    "path": "dist/index.js",
+    "source": "src/index.ts",
+    "host": "^9.0.0"
+  },
+  "scripts": {
+    "build": "directus-extension build",
+    "dev": "directus-extension build -w --no-minify"
+  }
+}
