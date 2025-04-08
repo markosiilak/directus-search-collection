@@ -5,12 +5,16 @@ A custom Directus interface for generating and validating URL slugs from other f
 ## Features
 
 - Generate slugs automatically from a source field
-- Select a source field from the current collection directly in the interface
-- Support for selecting fields from the current collection or related collections
-- Live validation of slug format
-- Option to regenerate slugs on demand
-- Configurable separator (hyphen or underscore)
+- Interactive editing mode with validation
+- Support for hierarchical paths with slashes
+- Select source fields from the current collection or related collections
+- Unique slug validation within the collection
+- Real-time validation with feedback
+- Option to manually edit or regenerate slugs
+- Configurable separator (default is hyphen)
 - Option to force lowercase
+- Custom validation messages
+- Support for translation collections
 
 ## Installation
 
@@ -24,55 +28,32 @@ A custom Directus interface for generating and validating URL slugs from other f
 1. Create a field with type `string` to store the slug
 2. Choose `Slug Generator` as the interface
 3. Configure the options:
-   - **Source Field**: Choose the field that will be the source for the slug (or leave empty to select at runtime)
-   - **Auto Generate**: Enable/disable automatic slug generation as you type
-   - **Separator**: Choose between hyphen (-) or underscore (_)
+   - **Collection**: (Auto-populated) The collection where this field exists
+   - **Field**: (Auto-populated) The field name this interface is applied to
+   - **Source Field Selection**: Choose the field that will be the source for generating the slug
+   - **Auto Generate**: Enable/disable automatic slug generation
+   - **Required**: Whether an empty slug should be considered invalid
+   - **Separator**: Character used as word separator (default: hyphen)
    - **Lowercase**: Enable/disable forcing slugs to lowercase
    - **Placeholder**: Custom placeholder text for the input field
+   - **Custom Empty Message**: Custom validation message for empty slugs
+   - **Custom Format Message**: Custom validation message for improperly formatted slugs
+   - **Custom Unique Message**: Custom validation message for non-unique slugs
 
-When no source field is configured in the options, the interface will display a dropdown to select a source field from the current collection.
+## Path Features
 
-## Examples
-
-### Simple slug from a title field
-
-```json
-{
-  "source": "title",
-  "auto": true,
-  "separator": "-",
-  "lowercase": true
-}
-```
-
-### Dynamic source field selection
-
-```json
-{
-  "source": "",
-  "auto": true,
-  "separator": "-",
-  "lowercase": true
-}
-```
-
-### Slug from a translated field
-
-```json
-{
-  "source": "translations.title",
-  "auto": true,
-  "separator": "-",
-  "lowercase": true
-}
-```
+The slug generator supports hierarchical paths:
+- Paths can include forward slashes (e.g., `parent/child/page`)
+- Leading slashes are preserved (e.g., `/absolute/path`)
+- Trailing slashes are preserved (e.g., `category/`)
 
 ## Validation Rules
 
 The slug validation follows these rules:
-- Can only contain lowercase alphanumeric characters and the separator
-- Cannot start or end with the separator
+- Can contain lowercase alphanumeric characters, hyphens, and slashes
+- Cannot contain spaces or special characters
 - Cannot contain consecutive separators
+- Must be unique within the collection (with special handling for translation collections)
 
 ## License
 
