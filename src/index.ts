@@ -1,153 +1,40 @@
-import { defineInterface } from '@directus/extensions-sdk';
-import InterfaceComponent from './interface.vue';
+import { defineInterface } from "@directus/extensions-sdk";
+
+import InterfaceComponent from "./interface.vue";
 
 export default defineInterface({
-  id: 'slug-generator',
-  name: 'Slug Generator',
-  icon: 'link',
-  description: 'Generate and validate a slug from another field',
+  id: "search-collection-item",
+  name: "Search Collection Item",
+  icon: "search",
+  group: "selection",
+  description: "Autocomplete search for collection items",
   component: InterfaceComponent,
-  types: ['string'],
-  group: 'standard',
   options: [
     {
-      field: 'select_collection',
-      name: 'Source Collection',
-      type: 'string',
-      meta: {
-        width: 'half',
-        interface: 'system-collection',
-        options: {
-          allowPrimaryKey: false,
-          allowNone: false,
-          includeCollections: ['translations']
-        }
-      }
-    },
-    {
-      field: "select_field",
-      name: "Source Field",
+      field: "placeholder",
+      name: "Placeholder",
       type: "string",
       meta: {
         width: "half",
-        interface: "system-field",
+        interface: "input",
         options: {
-          collectionField: "select_collection",
-          allowPrimaryKey: false,
-          allowNone: false
-        }
-      }
-    },
-    {
-      field: 'auto',
-      name: 'Auto Generate',
-      type: 'boolean',
-      meta: {
-        width: 'half',
-        interface: 'boolean',
-        options: {
-          label: 'Generate slug automatically'
-        }
+          placeholder: "Enter placeholder text...",
+        },
       },
-      schema: {
-        default_value: true
-      }
     },
     {
-      field: 'required',
-      name: 'Required',
-      type: 'boolean',
+      field: "field_collection",
+      name: "Collection",
+      type: "string",
       meta: {
-        width: 'half',
-        interface: 'boolean',
+        width: "half",
+        interface: "system-collection",
         options: {
-          label: 'Slug is required'
-        }
+          includeSystem: false,
+        },
+        note: "Choose the collection to search for items in.",
       },
-      schema: {
-        default_value: true
-      }
     },
-    {
-      field: 'separator',
-      name: 'Separator',
-      type: 'string',
-      meta: {
-        width: 'half',
-        interface: 'select-dropdown',
-        options: {
-          choices: [
-            { text: 'Hyphen (-)', value: '-' },
-            { text: 'Underscore (_)', value: '_' }
-          ]
-        }
-      },
-      schema: {
-        default_value: '-'
-      }
-    },
-    {
-      field: 'lowercase',
-      name: 'Lowercase',
-      type: 'boolean',
-      meta: {
-        width: 'half',
-        interface: 'boolean',
-        options: {
-          label: 'Convert to lowercase'
-        }
-      },
-      schema: {
-        default_value: true
-      }
-    },
-    {
-      field: 'placeholder',
-      name: 'Placeholder',
-      type: 'string',
-      meta: {
-        width: 'half',
-        interface: 'input',
-        options: {
-          placeholder: 'Enter placeholder text...'
-        }
-      }
-    },
-    {
-      field: 'custom_empty_message',
-      name: 'Custom Empty Error Message',
-      type: 'string',
-      meta: {
-        width: 'full',
-        interface: 'input',
-        options: {
-          placeholder: 'Slug cannot be empty. Please enter a valid slug.'
-        }
-      }
-    },
-    {
-      field: 'custom_format_message',
-      name: 'Custom Format Error Message',
-      type: 'string',
-      meta: {
-        width: 'full',
-        interface: 'input',
-        options: {
-          placeholder: 'Slug must contain only lowercase letters, numbers, hyphens, and forward slashes.'
-        }
-      }
-    },
-    {
-      field: 'custom_unique_message',
-      name: 'Custom Uniqueness Error Message',
-      type: 'string',
-      meta: {
-        width: 'full',
-        interface: 'input',
-        options: {
-          placeholder: 'This slug is already in use. Please enter a unique slug.'
-        }
-      }
-    }
-  ]
+  ],
+  types: ["string"],
 });

@@ -1,57 +1,54 @@
-# Directus Slug Generator
+# Directus Search Collection Item Extension
 
-A custom Directus interface for generating and validating URL slugs from other fields.
+A Directus extension that provides an advanced search interface for linking items from collections.
 
 ## Features
 
-- Generate slugs automatically from a source field
-- Interactive editing mode with validation
-- Support for hierarchical paths with slashes
-- Select source fields from the current collection or related collections
-- Unique slug validation within the collection
-- Real-time validation with feedback
-- Option to manually edit or regenerate slugs
-- Configurable separator (default is hyphen)
-- Option to force lowercase
-- Custom validation messages
-- Support for translation collections
-
-## Installation
-
-1. Clone this repository or download the extension files
-2. Place them in your Directus extensions folder
-3. Build the extension using `npm run build`
-4. Restart your Directus instance
+- Search for items by name or event ID
+- Dropdown selector to switch between search types
+- Auto-suggestions based on search input
+- Automatically adds selected items to the collection
+- Updates current item with relevant data from the selected item
+- User-friendly interface with custom styled dropdown
 
 ## Usage
 
-1. Create a field with type `string` to store the slug
-2. Choose `Slug Generator` as the interface
-3. Configure the options:
-   - **Collection**: (Auto-populated) The collection where this field exists
-   - **Field**: (Auto-populated) The field name this interface is applied to
-   - **Source Field Selection**: Choose the field that will be the source for generating the slug
-   - **Auto Generate**: Enable/disable automatic slug generation
-   - **Required**: Whether an empty slug should be considered invalid
-   - **Separator**: Character used as word separator (default: hyphen)
-   - **Lowercase**: Enable/disable forcing slugs to lowercase
-   - **Placeholder**: Custom placeholder text for the input field
-   - **Custom Empty Message**: Custom validation message for empty slugs
-   - **Custom Format Message**: Custom validation message for improperly formatted slugs
-   - **Custom Unique Message**: Custom validation message for non-unique slugs
+This extension allows users to search for and select items from a specified collection. It's particularly useful for creating relationships between collections.
 
-## Path Features
+### Configuration Options
 
-The slug generator supports hierarchical paths:
-- Paths can include forward slashes (e.g., `parent/child/page`)
-- Leading slashes are preserved (e.g., `/absolute/path`)
-- Trailing slashes are preserved (e.g., `category/`)
+When configuring the interface in Directus, the following options are available:
 
-## Validation Rules
+- **value**: The current value to display in the search field
+- **placeholder**: Custom placeholder text for the search input (default: "Search for an event")
+- **collection**: The collection that contains the current item being edited
+- **fieldCollection**: The collection to search in (default: "event")
 
-The slug validation follows these rules:
-- Can contain lowercase alphanumeric characters, hyphens, and slashes
-- Cannot contain spaces or special characters
-- Cannot contain consecutive separators
-- Must be unique within the collection (with special handling for translation collections)
+### Example
 
+The extension is designed to work with event data. When a user selects an event from the search results, it will:
+
+1. Update the current item with the event's title
+2. Set the URL based on the event's category and slug
+3. Include the event's image
+
+## Development
+
+This extension is built using Vue 3 and the Directus Extensions SDK.
+
+### Key Components
+
+- Custom dropdown selector for search type
+- Auto-complete search functionality
+- Live filtering of results
+- Directus API integration for data fetching and updating
+
+### File Structure
+
+- `interface.vue`: Main component file containing all functionality
+- `index.js`: Entry point for the extension
+
+## Requirements
+
+- Directus 9.0.0+
+- Collections with proper schema for events and related items
