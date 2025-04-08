@@ -55,6 +55,3 @@ The slug validation follows these rules:
 - Cannot contain consecutive separators
 - Must be unique within the collection (with special handling for translation collections)
 
-## License
-
-This extension is licensed under the MIT license.
