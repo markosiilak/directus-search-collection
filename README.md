@@ -1,4 +1,4 @@
-# Slug Generator
+# Directus Slug Generator
 
 A custom Directus interface for generating and validating URL slugs from other fields.
 
