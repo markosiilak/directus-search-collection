@@ -46,7 +46,7 @@ This extension is built using Vue 3 and the Directus Extensions SDK.
 ### File Structure
 
 - `interface.vue`: Main component file containing all functionality
-- `index.js`: Entry point for the extension
+- `index.ts`: Entry point for the extension
 
 ## Requirements
 
