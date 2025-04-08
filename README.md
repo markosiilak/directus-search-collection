@@ -51,4 +51,5 @@ This extension is built using Vue 3 and the Directus Extensions SDK.
 ## Requirements
 
 - Directus 9.0.0+
+- `@directus/extensions-sdk` must be installed in a `Directus` project
 - Collections with proper schema for events and related items
